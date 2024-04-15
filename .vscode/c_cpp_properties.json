@@ -1,0 +1,23 @@
+{
+  "env": {
+    "ASCEND_DIR": "/usr/local/Ascend/ascend-toolkit/latest"
+  },
+  "configurations": [
+    {
+      "name": "linux-gcc-arm64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${ASCEND_DIR}/include",
+        "${MPI_HOME}/include"
+      ],
+      "defines": [],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "c11",
+      "cppStandard": "gnu++11",
+      "intelliSenseMode": "linux-gcc-arm64",
+      "configurationProvider": "ms-vscode.makefile-tools",
+      "compilerArgs": []
+    }
+  ],
+  "version": 4
+}

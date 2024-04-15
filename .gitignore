@@ -1,0 +1,6 @@
+log/
+bin/
+*.bin
+
+*_test
+!opbase_test/
