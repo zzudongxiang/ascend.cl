@@ -10,7 +10,7 @@ using namespace hccl;
 extern HcclTest* init_opbase_ptr(HcclTest* opbase);
 extern void delete_opbase_ptr(HcclTest* opbase);
 
-int main(int argc, char *argv[])
+int main1(int argc, char *argv[])
 {
     MPI_Init(&argc, &argv);
     int ret = 0;
