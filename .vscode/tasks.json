@@ -10,6 +10,7 @@
                 "-Wl,-z,noexecstack",
                 "-Wl,--copy-dt-needed-entries",
                 "-fdiagnostics-color=always",
+                "${workspaceFolder}/common/utils/**.cc",
                 "${workspaceFolder}/common/src/**.cc",
                 "-g",
                 "${workspaceFolder}/opbase_test/zhangdx_test.cc",
@@ -25,7 +26,8 @@
                 "-L/usr/local/Ascend/ascend-toolkit/latest/lib64",
                 "-lascendcl",
                 "-L${MPI_HOME}/lib",
-                "-lmpi"
+                "-lmpi",
+                "-DMEM_DUMP"
             ],
             "options": {
                 "cwd": "${fileDirname}"
