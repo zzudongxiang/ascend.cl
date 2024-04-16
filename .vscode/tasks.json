@@ -5,28 +5,32 @@
             "label": "C/C++: gcc 生成活动文件",
             "command": "/usr/bin/gcc",
             "args": [
+                // 编译参数设置
                 "-Wl,-z,relro",
                 "-Wl,-z,now",
                 "-Wl,-z,noexecstack",
                 "-Wl,--copy-dt-needed-entries",
                 "-fdiagnostics-color=always",
+                // 编译文件设置
                 "${workspaceFolder}/common/utils/**.cc",
                 "${workspaceFolder}/common/src/**.cc",
                 "-g",
                 "${workspaceFolder}/opbase_test/zhangdx_test.cc",
                 "-o",
                 "${workspaceFolder}/bin/zhangdx_test",
+                // 头文件位置
                 "-I${workspaceFolder}/common/src",
                 "-I${workspaceFolder}/common/utils",
                 "-I${workspaceFolder}/opbase_test",
-                "-I/usr/local/Ascend/ascend-toolkit/latest/include",
                 "-I${MPI_HOME}/include",
-                "-L/usr/local/Ascend/ascend-toolkit/latest/lib64",
-                "-lhccl",
-                "-L/usr/local/Ascend/ascend-toolkit/latest/lib64",
-                "-lascendcl",
+                "-I${ASCEND_HOME}/include",
+                // 动态链接库位置
                 "-L${MPI_HOME}/lib",
+                "-L${ASCEND_HOME}/lib64",
+                "-lhccl",
+                "-lascendcl",
                 "-lmpi",
+                // 宏定义
                 "-DMEM_DUMP"
             ],
             "options": {
