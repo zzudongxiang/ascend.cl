@@ -84,26 +84,12 @@ void host_buf_init_bfp16(void* dst_buf, u64 count, int val)
     return;
 }
 
-void memory_dump(void *ptr, int len) {
-    int i;
-
-    for (i = 0; i < len; i++) {
-        if (i % 8 == 0 && i != 0)
-            printf(" ");
-        if (i % 16 == 0 && i != 0)
-            printf("\n");
-        printf("%02x ", *((uint8_t *)ptr + i));
-    }
-    printf("\n");
-}
-
 void hccl_host_buf_init(void* dst_buf, u64 count, int dtype, int val)
 {
     if(functionMap.find(dtype) != functionMap.end())
     {
         functionMap[dtype](dst_buf, count, val);
     }
-    memory_dump(dst_buf, 512);
     return;
 }
 

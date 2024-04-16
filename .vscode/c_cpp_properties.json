@@ -1,22 +1,27 @@
 {
-  "env": {
-    "ASCEND_DIR": "/usr/local/Ascend/ascend-toolkit/latest"
-  },
-  "configurations": [
-    {
-      "name": "linux-gcc-arm64",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "${ASCEND_DIR}/include",
-        "${MPI_HOME}/include"
-      ],
-      "defines": [],
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "c11",
-      "cppStandard": "gnu++11",
-      "intelliSenseMode": "linux-gcc-arm64",
-      "configurationProvider": "ms-vscode.makefile-tools"
-    }
-  ],
-  "version": 4
+    "env": {
+        "ASCEND_DIR": "/usr/local/Ascend/ascend-toolkit/latest"
+    },
+    "configurations": [
+        {
+            "name": "linux-gcc-arm64",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/common/src",
+                "${workspaceFolder}/common/utils",
+                "${workspaceFolder}/opbase_test",
+                "${MPI_HOME}/include",
+                "/usr/local/Ascend/ascend-toolkit/latest/include"
+            ],
+            "defines": [
+                "MEM_DUMP"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++11",
+            "intelliSenseMode": "linux-gcc-arm64",
+            "mergeConfigurations": false
+        }
+    ],
+    "version": 4
 }

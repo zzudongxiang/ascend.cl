@@ -41,7 +41,8 @@ LIBS = -L$(HCCL_LIB_DIR) -lhccl\
 INCLUDEDIRS = -I$(Common_DIR)\
 				-I$(HCCL_INC_DIR)\
 				-I$(ACL_INC_DIR)\
-				-I$(MPI_INC_DIR)
+				-I$(MPI_INC_DIR)\
+				-I./common/utils
 #
 #make
 #--------------------------------------------------------------------------------------------------------------------------------------------------
