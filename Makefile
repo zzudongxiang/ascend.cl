@@ -3,14 +3,14 @@
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 CXXFLAGS := -std=c++11\
         -Werror\
-        -fstack-protector-strong\
-        -fPIE -pie\
-        -O2\
-        -s\
         -Wl,-z,relro\
         -Wl,-z,now\
         -Wl,-z,noexecstack\
         -Wl,--copy-dt-needed-entries
+# -fstack-protector-strong
+# -fPIE -pie
+# -O2
+# -s
 
 Common_DIR = ./common/src
 Opbase_DIR = ./opbase_test
