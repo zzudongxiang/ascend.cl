@@ -6,9 +6,9 @@
             "command": "/usr/bin/gcc",
             "args": [
                 // 编译参数设置
-                "-Wl,-z,relro",
-                "-Wl,-z,now",
-                "-Wl,-z,noexecstack",
+                //"-Wl,-z,relro",
+                //"-Wl,-z,now",
+                //"-Wl,-z,noexecstack",
                 "-Wl,--copy-dt-needed-entries",
                 "-fdiagnostics-color=always",
                 // 编译文件设置
