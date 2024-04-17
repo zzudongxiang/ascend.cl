@@ -2,15 +2,15 @@
 #loading path
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 CXXFLAGS := -std=c++11\
-        -Werror\
-        -Wl,-z,relro\
-        -Wl,-z,now\
-        -Wl,-z,noexecstack\
         -Wl,--copy-dt-needed-entries
 # -fstack-protector-strong
 # -fPIE -pie
 # -O2
 # -s
+# -Werror
+# -Wl,-z,relro
+# -Wl,-z,now
+# -Wl,-z,noexecstack
 
 Common_DIR = ./common/src
 Opbase_DIR = ./opbase_test
