@@ -9,12 +9,12 @@
  * 
  * @example mem_dump(check_buf, 512);
  */
-void mem_dump(void *ptr, int len)
+void mem_dump(void *ptr, uint64_t len)
 {
 #ifdef MEM_DUMP
-    int i;
+    uint64_t i;
     printf("--------------------------------------------------\n");
-    printf("start ptr: %p, len: %d\r\n", ptr, len);
+    printf("start ptr: %p, len: %llu\r\n", ptr, (long long unsigned int)len);
     printf("--------------------------------------------------\n");
     for (i = 0; i < len; i++)
     {
@@ -38,12 +38,12 @@ void mem_dump(void *ptr, int len)
  * 
  * @example mem_dump_file(buffer, 512, "./log/dump.log");
  */
-void mem_dump_file(void *ptr, int len, const char *file)
+void mem_dump_file(void *ptr, uint64_t len, char *file)
 {
 #ifdef MEM_DUMP
     std::ofstream dump_file;
     dump_file.open(file);
-    for (int i = 0; i < len; i++)
+    for (uint64_t i = 0; i < len; i++)
     {
         dump_file << *((uint8_t *)ptr + i);
     }

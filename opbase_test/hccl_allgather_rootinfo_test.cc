@@ -49,6 +49,13 @@ int HcclOpBaseAllgatherTest::init_buf_val()
     ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize * rank_size));
     hccl_host_buf_init((char*)check_buf, data->count * rank_size, dtype, val);
 
+    // dump初始化的内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/allgather_init_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)(malloc_kSize * rank_size), bin_path);
+    mem_dump_file((char*)check_buf, malloc_kSize * rank_size, bin_path);
+
     return 0;
 }
 
@@ -93,6 +100,14 @@ int HcclOpBaseAllgatherTest::check_buf_result()
     {
         check_err++;
     }
+
+    // dump检查的内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/allgather_check_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)(malloc_kSize * rank_size), bin_path);
+    mem_dump_file((char*)recv_buff_temp, malloc_kSize * rank_size, bin_path);
+
     return 0;
 }
 

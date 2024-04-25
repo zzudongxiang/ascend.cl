@@ -452,7 +452,7 @@ int HcclTest::get_mpi_proc()
     rank_size = proc_size;
 
     const char* devs = getenv("HCCL_TEST_USE_DEVS");
-    printf("DEBGU: HCCL_TEST_USE_DEVS: %s\r\n", devs);
+    printf("rank_id: %d, rank_size: %d, HCCL_TEST_USE_DEVS: %s\r\n", rank_id, rank_size, devs);
     if(devs != NULL)
     {
         std::vector<int> dev_ids;

@@ -2,7 +2,8 @@
 #loading path
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 CXXFLAGS := -std=c++11\
-        -Wl,--copy-dt-needed-entries
+        -Wl,--copy-dt-needed-entries \
+		-DMEM_DUMP
 # -fstack-protector-strong
 # -fPIE -pie
 # -O2
@@ -15,10 +16,11 @@ CXXFLAGS := -std=c++11\
 Common_DIR = ./common/src
 Opbase_DIR = ./opbase_test
 ASCEND_DIR = /usr/local/Ascend/ascend-toolkit/latest
-
+Utils_DIR = ./common/utils
 
 Common_SRC = $(wildcard ${Common_DIR}/*.cc)
 Opbase_SRC = $(wildcard ${Opbase_DIR}/*.cc)
+Utils_SRC = $(wildcard ${Utils_DIR}/*.cc)
 
 HCCL_INC_DIR = ${ASCEND_DIR}/include
 HCCL_LIB_DIR = ${ASCEND_DIR}/lib64
@@ -48,19 +50,19 @@ INCLUDEDIRS = -I$(Common_DIR)\
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 all:
 	@mkdir -p bin
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_allgather_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_gather_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_allgather_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_gather_test $(LIBS)
 	@printf "\033[0;32;32mall_gather_test compile completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_allreduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_reduce_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_allreduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_reduce_test $(LIBS)
 	@printf "\033[0;32;32mall_reduce_test compile completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_alltoallv_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o alltoallv_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_alltoallv_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o alltoallv_test $(LIBS)
 	@printf "\033[0;32;32mall_to_allv_test compile completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_alltoall_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o alltoall_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_alltoall_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o alltoall_test $(LIBS)
 	@printf "\033[0;32;32mall_to_all_test compile completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_brocast_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o broadcast_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_brocast_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o broadcast_test $(LIBS)
 	@printf "\033[0;32;32mbroad_cast_test compile completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_reducescatter_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_scatter_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_reducescatter_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_scatter_test $(LIBS)
 	@printf "\033[0;32;32mreduce_scatter_test completed\n\033[m" 
-	g++ $(CXXFLAGS) $(Common_SRC) ${Opbase_DIR}/hccl_reduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_reduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_test $(LIBS)
 	@printf "\033[0;32;32mreduce_test compile completed\n\033[m" 
 	mv $(LIST) ./bin
 

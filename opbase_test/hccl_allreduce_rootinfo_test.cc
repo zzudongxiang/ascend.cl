@@ -50,6 +50,13 @@ int HcclOpBaseAllreduceTest::init_buf_val()
 
     hccl_reduce_check_buf_init((char*)check_buf, data->count, dtype, op_type, val, rank_size);
 
+    // dump初始化内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/allreduce_init_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
+    mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
+
     return 0;
 }
 
@@ -88,6 +95,14 @@ int HcclOpBaseAllreduceTest::check_buf_result()
     {
         check_err++;
     }
+
+    // dump检查的内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/allreduce_check_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
+    mem_dump_file((char*)recv_buff_temp, malloc_kSize, bin_path);
+
     return 0;
 }
 

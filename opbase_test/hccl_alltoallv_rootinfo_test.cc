@@ -76,6 +76,14 @@ int HcclOpBaseAlltoallvTest::check_buf_result()
     {
         check_err++;
     }
+
+    // dump检查的内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/alltoallv_check_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
+    mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
+
     return 0;
 }
 
@@ -125,6 +133,13 @@ int HcclOpBaseAlltoallvTest::hccl_op_base_test() //主函数
     ACLCHECK(aclrtMallocHost((void**)&host_buf, malloc_kSize));
     hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
+
+    // dump初始化的内存
+    char bin_path[MAX_PATH_LEN];
+    memset(bin_path, 0, MAX_PATH_LEN);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/alltoallv_init_rank_%d.bin", rank_id);
+    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, host_buf, (long long unsigned int)malloc_kSize, bin_path);
+    mem_dump_file((char*)host_buf, malloc_kSize, bin_path);
 
     //执行集合通信操作
     for(int j = 0; j < warmup_iters; ++j) {
