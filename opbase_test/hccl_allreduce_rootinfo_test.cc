@@ -54,7 +54,7 @@ int HcclOpBaseAllreduceTest::init_buf_val()
     char bin_path[MAX_PATH_LEN];
     memset(bin_path, 0, MAX_PATH_LEN);
     sprintf(bin_path, "/root/Workdir/hccl_test/log/allreduce_init_rank_%d.bin", rank_id);
-    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
+    printf("rank_id: %d, host_init_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
     mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
 
     return 0;
@@ -100,7 +100,7 @@ int HcclOpBaseAllreduceTest::check_buf_result()
     char bin_path[MAX_PATH_LEN];
     memset(bin_path, 0, MAX_PATH_LEN);
     sprintf(bin_path, "/root/Workdir/hccl_test/log/allreduce_check_rank_%d.bin", rank_id);
-    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
+    printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
     mem_dump_file((char*)recv_buff_temp, malloc_kSize, bin_path);
 
     return 0;
@@ -146,6 +146,15 @@ int HcclOpBaseAllreduceTest::hccl_op_base_test() //主函数
     if (check == 1) {
         ACLCHECK(init_buf_val());
     }
+
+    // dump NPU HBM Address
+    printf("rank_id: %d, data->count: %llu, send_hbm_ptr: %p (size: %llu), recv_hbm_ptr: %p (size: %llu)\r\n",
+        rank_id,
+        (long long unsigned int)data->count,
+        send_buff,
+        (long long unsigned int)malloc_kSize,
+        recv_buff,
+        (long long unsigned int)malloc_kSize);
 
     //执行集合通信操作
     for(int j = 0; j < warmup_iters; ++j) {

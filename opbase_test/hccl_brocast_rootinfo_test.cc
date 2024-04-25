@@ -52,7 +52,7 @@ int HcclOpBaseBrocastTest::init_buf_val()
     char bin_path[MAX_PATH_LEN];
     memset(bin_path, 0, MAX_PATH_LEN);
     sprintf(bin_path, "/root/Workdir/hccl_test/log/broadcast_init_rank_%d.bin", rank_id);
-    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
+    printf("rank_id: %d, host_init_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
     mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
 
     return 0;
@@ -104,7 +104,7 @@ int HcclOpBaseBrocastTest::check_buf_result()
     char bin_path[MAX_PATH_LEN];
     memset(bin_path, 0, MAX_PATH_LEN);
     sprintf(bin_path, "/root/Workdir/hccl_test/log/broadcast_check_rank_%d.bin", rank_id);
-    printf("rank_id: %d, start ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
+    printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
     mem_dump_file((char*)recv_buff_temp, malloc_kSize, bin_path);
 
     return 0;
@@ -148,6 +148,12 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
         hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
         ACLCHECK(aclrtMemcpy((void*)buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
     }
+
+    // dump NPU HBM Address
+    printf("rank_id: %d, buff_hbm_ptr: %p (size: %llu)\r\n",
+        rank_id,
+        buff,
+        (long long unsigned int)malloc_kSize);
 
     // 准备校验内存
     if (check == 1) {
