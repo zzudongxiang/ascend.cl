@@ -14,7 +14,8 @@ void host_buf_init_fp32(void* dst_buf, u64 count, int val)
     f_tmp = (float*)dst_buf;
     for(u64 j = 0; j < count; ++j)
     {
-        f_tmp[j] = val;
+        //f_tmp[j] = val;
+        f_tmp[j] = j;
     }
     return;
 }

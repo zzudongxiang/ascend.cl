@@ -100,7 +100,7 @@ int HcclOpBaseReducescatterTest::check_buf_result()
     // dump检查的内存
     char bin_path[MAX_PATH_LEN];
     memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/reducescatter_check_ank_%d.bin", rank_id);
+    sprintf(bin_path, "/root/Workdir/hccl_test/log/reducescatter_check_rank_%d.bin", rank_id);
     printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
     mem_dump_file((char*)recv_buff_temp, malloc_kSize, bin_path);
 

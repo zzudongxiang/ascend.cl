@@ -150,8 +150,9 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
     }
 
     // dump NPU HBM Address
-    printf("rank_id: %d, buff_hbm_ptr: %p (size: %llu)\r\n",
+    printf("rank_id: %d, data->count: %llu, buff_hbm_ptr: %p (size: %llu)\r\n",
         rank_id,
+        data->count,
         buff,
         (long long unsigned int)malloc_kSize);
 
