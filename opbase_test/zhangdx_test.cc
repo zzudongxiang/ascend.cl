@@ -132,7 +132,7 @@ int HcclOpBaseAllgatherTest::hccl_op_base_test() //主函数
 
     //初始化输入内存
     ACLCHECK(aclrtMallocHost((void**)&host_buf, malloc_kSize));
-    hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
+    hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
 
     DUMP_DEBUG("zhangdx", "host_init", rank_id, 
