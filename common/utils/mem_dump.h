@@ -9,7 +9,7 @@
 
 void mem_dump(void *ptr, uint64_t len);
 void mem_dump_file(void *ptr, uint64_t len, char *file);
-void mem_dump_info(void *ptr, uint64_t len, uint8_t dtype_len);
+void mem_dump_info(int rank_id, const char *func, void *ptr, uint64_t len, uint8_t dtype_len);
 
 #ifdef MEM_DUMP
 
@@ -34,7 +34,7 @@ void mem_dump_info(void *ptr, uint64_t len, uint8_t dtype_len);
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> recv_buff: %p (malloc: %.2f GB, trans: %.2f MB)\r\n",                                 \
                rank_id,                                                                                                                        \
                recv_buff, recv_malloc * B_TO_GB, recv_trans * B_TO_MB);                                                                        \
-        mem_dump_info(host_buff, host_malloc, DTYPE_LEN);                                                                                      \
+        mem_dump_info(rank_id, FUNC_TAG, host_buff, host_malloc, DTYPE_LEN);                                                                                      \
     } while (0)
 
 // DUMP_INIT("allgather", rank_id,
