@@ -135,7 +135,7 @@ int HcclOpBaseAllgatherTest::hccl_op_base_test() //主函数
     hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
 
-    DUMP_DEBUG("zhangdx", "host_init", rank_id, 
+    DUMP_INIT("zhangdx", rank_id,
         host_buf, malloc_kSize, 
         send_buff, malloc_kSize, data->count,
         recv_buff, malloc_kSize * rank_size, data->count);
@@ -171,7 +171,7 @@ int HcclOpBaseAllgatherTest::hccl_op_base_test() //主函数
 
     ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize * rank_size));
     ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize * rank_size, (void*)recv_buff, malloc_kSize * rank_size, ACL_MEMCPY_DEVICE_TO_HOST));
-    DUMP_DEBUG("zhangdx", "host_done", rank_id, 
+    DUMP_DONE("zhangdx", rank_id, host_buf,
         recv_buff_temp, malloc_kSize * rank_size, 
         send_buff, malloc_kSize, data->count,
         recv_buff, malloc_kSize * rank_size, data->count);
