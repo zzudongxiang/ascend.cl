@@ -126,11 +126,11 @@ int HcclOpBaseReducescatterTest::hccl_op_base_test() //主函数
     //初始化输入内存
     ACLCHECK(aclrtMallocHost((void**)&host_buf, malloc_kSize * rank_size));
     if(op_type == HCCL_REDUCE_PROD || dtype == HCCL_DATA_TYPE_INT8) {
-        hccl_host_buf_init((char*)host_buf, data->count * rank_size, dtype, val);
+        hccl_host_buf_init((char*)host_buf, data->count * rank_size, dtype, rank_id + 1);
     } else {
         for(int i = 0; i < rank_size; ++i)
         {
-            hccl_host_buf_init(((char*)host_buf + i * malloc_kSize), data->count, dtype, i + 1);//+ i * malloc_kSize 跳到下一块内存中，写数据
+            hccl_host_buf_init(((char*)host_buf + i * malloc_kSize), data->count, dtype, i + 10);//+ i * malloc_kSize 跳到下一块内存中，写数据
         }
     }
 
@@ -166,16 +166,16 @@ int HcclOpBaseReducescatterTest::hccl_op_base_test() //主函数
 
     if (check == 1) {
         ACLCHECK(check_buf_result()); // 校验计算结果
+    } else{
+        ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
+        ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+        DUMP_DONE("reducescatter", rank_id, host_buf,
+            recv_buff_temp, malloc_kSize, 
+            send_buff, malloc_kSize * rank_size, data->count,
+            recv_buff, malloc_kSize, data->count);
     }
 
     cal_execution_time(time);
-
-    ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
-    ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
-    DUMP_DONE("reducescatter", rank_id, host_buf,
-        recv_buff_temp, malloc_kSize, 
-        send_buff, malloc_kSize * rank_size, data->count,
-        recv_buff, malloc_kSize, data->count);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(send_buff));

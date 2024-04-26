@@ -122,7 +122,7 @@ int HcclOpBaseAllreduceTest::hccl_op_base_test() //主函数
 
     //初始化输入内存
     ACLCHECK(aclrtMallocHost((void**)&host_buf, malloc_kSize));
-    hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
+    hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
 
     DUMP_INIT("allreduce", rank_id,
@@ -155,16 +155,16 @@ int HcclOpBaseAllreduceTest::hccl_op_base_test() //主函数
 
     if (check == 1) {
         ACLCHECK(check_buf_result()); // 校验计算结果
+    } else {
+        ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
+        ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+        DUMP_DONE("allreduce", rank_id, host_buf,
+            recv_buff_temp, malloc_kSize, 
+            send_buff, malloc_kSize, data->count,
+            recv_buff, malloc_kSize, data->count);
     }
 
     cal_execution_time(time);
-
-    ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
-    ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
-    DUMP_DONE("allreduce", rank_id, host_buf,
-        recv_buff_temp, malloc_kSize, 
-        send_buff, malloc_kSize, data->count,
-        recv_buff, malloc_kSize, data->count);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(send_buff));

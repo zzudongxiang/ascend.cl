@@ -153,16 +153,16 @@ int HcclOpBaseAlltoallvTest::hccl_op_base_test() //主函数
 
     if (check == 1) {
         ACLCHECK(check_buf_result()); // 校验计算结果
+    } else {
+        ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize));
+        ACLCHECK(aclrtMemcpy((void*)check_buf, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+        DUMP_DONE("alltoallv", rank_id, host_buf
+            check_buf, malloc_kSize, 
+            send_buff, malloc_kSize, send_counts,
+            recv_buff, malloc_kSize, recv_counts);
     }
 
     cal_execution_time(time);
-
-    ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize));
-    ACLCHECK(aclrtMemcpy((void*)check_buf, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
-    DUMP_DONE("alltoallv", rank_id, host_buf
-        check_buf, malloc_kSize, 
-        send_buff, malloc_kSize, send_counts,
-        recv_buff, malloc_kSize, recv_counts);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(send_buff));

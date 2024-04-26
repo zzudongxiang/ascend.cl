@@ -129,7 +129,7 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
     ACLCHECK(aclrtMallocHost((void**)&host_buf, malloc_kSize));
     if(rank_id == root_rank)
     {
-        hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
+        hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
         ACLCHECK(aclrtMemcpy((void*)buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
         DUMP_INIT("brocast", rank_id,
             host_buf, malloc_kSize, 
@@ -163,16 +163,16 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
 
     if (check == 1) {
         ACLCHECK(check_buf_result()); // 校验计算结果
-    }
-
-    cal_execution_time(time);
-
-    ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
-    ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
-    DUMP_INIT("brocast", rank_id, host_buf,
+    } else {
+        ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
+        ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+        DUMP_DONE("brocast", rank_id, host_buf,
             recv_buff_temp, malloc_kSize, 
             buff, malloc_kSize, data->count,
             buff, malloc_kSize, data->count);
+    }
+
+    cal_execution_time(time);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(buff));
