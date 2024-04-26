@@ -48,14 +48,6 @@ int HcclOpBaseAllgatherTest::init_buf_val()
     //初始化校验内存
     ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize * rank_size));
     hccl_host_buf_init((char*)check_buf, data->count * rank_size, dtype, val);
-
-    // dump初始化的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/allgather_init_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_init_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)(malloc_kSize * rank_size), bin_path);
-    mem_dump_file((char*)check_buf, malloc_kSize * rank_size, bin_path);
-
     return 0;
 }
 
@@ -100,14 +92,6 @@ int HcclOpBaseAllgatherTest::check_buf_result()
     {
         check_err++;
     }
-
-    // dump检查的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/allgather_check_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)(malloc_kSize * rank_size), bin_path);
-    mem_dump_file((char*)recv_buff_temp, malloc_kSize * rank_size, bin_path);
-
     return 0;
 }
 
@@ -150,14 +134,10 @@ int HcclOpBaseAllgatherTest::hccl_op_base_test() //主函数
     hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
     
-    // dump NPU HBM Address
-    printf("rank_id: %d, data->count: %llu, send_hbm_ptr: %p (size: %llu), recv_hbm_ptr: %p (size: %llu)\r\n",
-        rank_id,
-        (long long unsigned int)data->count,
-        send_buff,
-        (long long unsigned int)malloc_kSize,
-        recv_buff,
-        (long long unsigned int)(malloc_kSize * rank_size));
+    DUMP_INIT("allgather", rank_id,
+        host_buf, malloc_kSize, 
+        send_buff, malloc_kSize, data->count,
+        recv_buff, malloc_kSize * rank_size, data->count);
 
     // 准备校验内存
     if (check == 1) {
@@ -187,6 +167,13 @@ int HcclOpBaseAllgatherTest::hccl_op_base_test() //主函数
     }
 
     cal_execution_time(time);
+
+    ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize * rank_size));
+    ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize * rank_size, (void*)recv_buff, malloc_kSize * rank_size, ACL_MEMCPY_DEVICE_TO_HOST));
+    DUMP_DONE("allgather", rank_id, host_buf,
+        recv_buff_temp, malloc_kSize * rank_size, 
+        send_buff, malloc_kSize, data->count,
+        recv_buff, malloc_kSize * rank_size, data->count);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(send_buff));
