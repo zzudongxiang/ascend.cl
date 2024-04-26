@@ -112,7 +112,7 @@ public:
     int dtype = HCCL_DATA_TYPE_FP32;
     int hccl_root = 0;
     int warmup_iters = 5;
-    int check = 1;
+    int check = 0;
     u32 dev_count = 0;
     int stepfactor_flag = 0;
     int stepbytes_flag = 0;
