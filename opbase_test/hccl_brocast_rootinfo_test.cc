@@ -47,14 +47,6 @@ int HcclOpBaseBrocastTest::init_buf_val()
     //初始化校验内存
     ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize));
     hccl_host_buf_init((char*)check_buf, data->count, dtype, val);
-
-    // dump初始化的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/broadcast_init_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_init_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
-    mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
-
     return 0;
 }
 
@@ -99,14 +91,6 @@ int HcclOpBaseBrocastTest::check_buf_result()
     {
         check_err++;
     }
-
-    // dump检查的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/broadcast_check_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, recv_buff_temp, (long long unsigned int)malloc_kSize, bin_path);
-    mem_dump_file((char*)recv_buff_temp, malloc_kSize, bin_path);
-
     return 0;
 }
 
@@ -147,14 +131,12 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
     {
         hccl_host_buf_init((char*)host_buf, data->count, dtype, val);
         ACLCHECK(aclrtMemcpy((void*)buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
+        DUMP_INIT("brocast", rank_id,
+            host_buf, malloc_kSize, 
+            buff, malloc_kSize, data->count,
+            buff, malloc_kSize, data->count);
     }
-
-    // dump NPU HBM Address
-    printf("rank_id: %d, data->count: %llu, buff_hbm_ptr: %p (size: %llu)\r\n",
-        rank_id,
-        data->count,
-        buff,
-        (long long unsigned int)malloc_kSize);
+    else printf("skip rank_%d init", rank_id);
 
     // 准备校验内存
     if (check == 1) {
@@ -184,6 +166,13 @@ int HcclOpBaseBrocastTest::hccl_op_base_test() //主函数
     }
 
     cal_execution_time(time);
+
+    ACLCHECK(aclrtMallocHost((void**)&recv_buff_temp, malloc_kSize));
+    ACLCHECK(aclrtMemcpy((void*)recv_buff_temp, malloc_kSize, (void*)buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+    DUMP_INIT("brocast", rank_id, host_buf,
+            recv_buff_temp, malloc_kSize, 
+            buff, malloc_kSize, data->count,
+            buff, malloc_kSize, data->count);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(buff));
