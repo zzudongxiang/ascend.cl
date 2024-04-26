@@ -25,13 +25,13 @@ void mem_dump_file(void *ptr, uint64_t len, char *file);
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> log_path: %s\r\n", rank_id, bin_path);                                                \
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> host_buff: %p (malloc: %.2f GB, value: %d)\r\n",                                      \
                rank_id,                                                                                                                        \
-               host_buff, host_malloc *B_TO_GB, rank_id + 1);                                                                                  \
+               host_buff, host_malloc * B_TO_GB, rank_id + 1);                                                                                 \
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> send_buff: %p (malloc: %.2f GB, trans: %.2f MB)\r\n",                                 \
                rank_id,                                                                                                                        \
-               send_buff, send_malloc *B_TO_GB, send_trans *B_TO_MB);                                                                          \
+               send_buff, send_malloc * B_TO_GB, send_trans * B_TO_MB);                                                                        \
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> recv_buff: %p (malloc: %.2f GB, trans: %.2f MB)\r\n",                                 \
                rank_id,                                                                                                                        \
-               recv_buff, recv_malloc *B_TO_GB, recv_trans *B_TO_MB);                                                                          \
+               recv_buff, recv_malloc * B_TO_GB, recv_trans * B_TO_MB);                                                                        \
     } while (0)
 
 // DUMP_INIT("allgather", rank_id,

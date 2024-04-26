@@ -128,8 +128,8 @@ int HcclOpBaseAlltoallvTest::hccl_op_base_test() //主函数
 
     DUMP_INIT("alltoallv", rank_id,
         host_buf, malloc_kSize, 
-        send_buff, malloc_kSize, send_counts,
-        recv_buff, malloc_kSize, recv_counts);
+        send_buff, malloc_kSize, *send_counts,
+        recv_buff, malloc_kSize, *recv_counts);
 
     //执行集合通信操作
     for(int j = 0; j < warmup_iters; ++j) {
@@ -156,10 +156,10 @@ int HcclOpBaseAlltoallvTest::hccl_op_base_test() //主函数
     } else {
         ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize));
         ACLCHECK(aclrtMemcpy((void*)check_buf, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
-        DUMP_DONE("alltoallv", rank_id, host_buf
+        DUMP_DONE("alltoallv", rank_id, host_buf,
             check_buf, malloc_kSize, 
-            send_buff, malloc_kSize, send_counts,
-            recv_buff, malloc_kSize, recv_counts);
+            send_buff, malloc_kSize, *send_counts,
+            recv_buff, malloc_kSize, *recv_counts);
     }
 
     cal_execution_time(time);
