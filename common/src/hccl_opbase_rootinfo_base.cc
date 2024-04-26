@@ -126,6 +126,9 @@ void HcclOpBaseTest::is_data_overflow()
 
 void HcclOpBaseTest::print_execution_time(double average_time_us, double algorithm_bandwith_GBytes_s)
 {
+#ifdef MEM_DUMP
+    return;
+#endif
     //不开启结果校验场景
     if (check == 0)
     {

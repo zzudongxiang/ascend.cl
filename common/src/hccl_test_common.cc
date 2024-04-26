@@ -514,7 +514,9 @@ int HcclTest::init_hcclComm()
 
     // 在root_rank获取root_info
     if(rank_id == root_rank) {
+#ifndef MEM_DUMP
         printf("the minbytes is %llu, maxbytes is %llu, iters is %d, warmup_iters is %d\n", data->min_bytes, data->max_bytes, iters, warmup_iters);
+#endif
         HCCLROOTRANKCHECK(HcclGetRootInfo(&comm_id));
     }
     //将root_info广播到通信域内的其他rank
