@@ -60,14 +60,6 @@ int HcclOpBaseAlltoallTest::check_buf_result()
     }
     free(recv_counts);
     free(recv_disp);
-
-    // dump检查的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/alltoall_check_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_check_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, check_buf, (long long unsigned int)malloc_kSize, bin_path);
-    mem_dump_file((char*)check_buf, malloc_kSize, bin_path);
-
     return 0;
 }
 
@@ -111,25 +103,13 @@ int HcclOpBaseAlltoallTest::hccl_op_base_test() //主函数
     hccl_host_buf_init((char*)host_buf, data->count, dtype, rank_id + 1);
     ACLCHECK(aclrtMemcpy((void*)send_buff, malloc_kSize, (void*)host_buf, malloc_kSize, ACL_MEMCPY_HOST_TO_DEVICE));
 
-    // dump初始化的内存
-    char bin_path[MAX_PATH_LEN];
-    memset(bin_path, 0, MAX_PATH_LEN);
-    sprintf(bin_path, "/root/Workdir/hccl_test/log/alltoall_init_rank_%d.bin", rank_id);
-    printf("rank_id: %d, host_init_ptr: %p, len: %llu, log_path: %s\r\n", rank_id, host_buf, (long long unsigned int)malloc_kSize, bin_path);
-    mem_dump_file((char*)host_buf, malloc_kSize, bin_path);
-
     sendCount_ = data->count / rank_size;
     recvCount_ = data->count / rank_size;
 
-    // dump NPU HBM Address
-    printf("rank_id: %d, send_hbm_ptr: %p (size: %llu, sendCount: %llu), recv_hbm_ptr: %p (size: %llu, recvCount: %llu)\r\n",
-        rank_id,
-        send_buff,
-        (long long unsigned int)malloc_kSize,
-        (long long unsigned int)sendCount_,
-        recv_buff,
-        (long long unsigned int)malloc_kSize,
-        (long long unsigned int)recvCount_);
+    DUMP_INIT("alltoall", rank_id,
+        host_buf, malloc_kSize, 
+        send_buff, malloc_kSize, sendCount_,
+        recv_buff, malloc_kSize, recvCount_);
 
     //执行集合通信操作
     for(int j = 0; j < warmup_iters; ++j) {
@@ -157,6 +137,14 @@ int HcclOpBaseAlltoallTest::hccl_op_base_test() //主函数
     }
 
     cal_execution_time(time);
+
+
+    ACLCHECK(aclrtMallocHost((void**)&check_buf, malloc_kSize));
+    ACLCHECK(aclrtMemcpy((void*)check_buf, malloc_kSize, (void*)recv_buff, malloc_kSize, ACL_MEMCPY_DEVICE_TO_HOST));
+    DUMP_DONE("alltoall", rank_id, host_buf,
+        check_buf, malloc_kSize, 
+        send_buff, malloc_kSize, sendCount_,
+        recv_buff, malloc_kSize, recvCount_);
 
     //销毁集合通信内存资源
     ACLCHECK(aclrtFree(send_buff));
