@@ -1,5 +1,8 @@
 ---
 title: HCCL集合通信测试
+links:
+  - https://gitee.com/zzudongxiang/hccl_test
+  - https://github.com/zzudongxiang/hccl_test
 ---
 
 # 1. 快速使用
