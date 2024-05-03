@@ -1,0 +1,80 @@
+rank_id: 0, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 2, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 3, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 4, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 5, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 7, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 1, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 6, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+skip rank_1 initskip rank_6 initskip rank_7 initskip rank_4 initskip rank_5 initskip rank_3 initskip rank_2 initfunc_brocast_init_rank_0 >> log_path: /root/workdir/hccl_test/log/brocast_init_rank_0.bin
+func_brocast_init_rank_0 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 1.000000)
+func_brocast_init_rank_0 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_init_rank_0 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_dump_rank_0 >> start_ptr: 0x124380000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_init_rank_0 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_brocast_init_rank_0 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (recv): 3.00 GB
+func_brocast_init_rank_0 >> ptr_shift: 0x1242c0000000 (recv) -> 0x1242c0000000 (send): 0.00 GB
+func_brocast_done_rank_2 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_2.bin
+func_brocast_done_rank_2 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 3.000000)
+func_brocast_done_rank_2 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_2 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_3 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_3.bin
+func_brocast_done_rank_3 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 4.000000)
+func_brocast_done_rank_3 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_3 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_6 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_6.bin
+func_brocast_done_rank_6 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 7.000000)
+func_brocast_done_rank_6 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_6 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_7 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_7.bin
+func_brocast_done_rank_7 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 8.000000)
+func_brocast_done_rank_7 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_7 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_0 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_0.bin
+func_brocast_done_rank_0 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 1.000000)
+func_brocast_done_rank_0 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_0 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_5 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_5.bin
+func_brocast_done_rank_5 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 6.000000)
+func_brocast_done_rank_5 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_5 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_1 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_1.bin
+func_brocast_done_rank_1 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 2.000000)
+func_brocast_done_rank_1 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_1 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_4 >> log_path: /root/workdir/hccl_test/log/brocast_done_rank_4.bin
+func_brocast_done_rank_4 >> host_buff: 0x124780000000 (malloc: 2.00 GB, value: 5.000000)
+func_brocast_done_rank_4 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_done_rank_4 >> recv_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 512.00 MB)
+func_brocast_dump_rank_3 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_3 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_3 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_3 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_6 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_6 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_6 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_6 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_2 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_2 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_2 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_2 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_5 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_5 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_5 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_5 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_1 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_1 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_1 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_1 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_4 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_4 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_4 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_4 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_0 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_0 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_0 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_0 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
+func_brocast_dump_rank_7 >> start_ptr: 0x124780000000 (2048.00 MB), fp32: 1.000000 (0x0000803F)
+func_brocast_done_rank_7 >> ptr_shift: 0x124780000000 (host) -> 0x124380000000 (init): 16.00 GB
+func_brocast_done_rank_7 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (send): 19.00 GB
+func_brocast_done_rank_7 >> ptr_shift: 0x124780000000 (host) -> 0x1242c0000000 (recv): 19.00 GB
