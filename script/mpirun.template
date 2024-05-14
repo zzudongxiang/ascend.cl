@@ -1,0 +1,4 @@
+mpirun -n {npus} {exec} \
+        -b {mem_size} \
+        -e {mem_size} \
+        -p {npus} > {log_path}

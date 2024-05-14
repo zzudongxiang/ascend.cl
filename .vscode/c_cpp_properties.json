@@ -4,9 +4,9 @@
             "name": "linux-gcc-arm64",
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/common/src",
+                "${workspaceFolder}/common/hccl",
                 "${workspaceFolder}/common/utils",
-                "${workspaceFolder}/opbase_test",
+                "${workspaceFolder}/hccl",
                 "${MPI_HOME}/include",
                 "${ASCEND_HOME}/include"
             ],

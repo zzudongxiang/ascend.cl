@@ -8,5 +8,6 @@
         "algorithm": "cpp",
         "fstream": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }

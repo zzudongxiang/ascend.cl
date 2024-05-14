@@ -1,0 +1,11 @@
+# https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC1alpha003/devaids/auxiliarydevtool/atlasprofiling_16_0012.html
+msprof --application="{script_path}" \
+    --storage-limit=1024MB \
+    --host-sys=cpu,mem,network \
+    --sys-profiling=on \
+    --sys-cpu-profiling=on \
+    --sys-hardware-mem=on \
+    --sys-io-profiling=on \
+    --ai-core=on \
+    --aic-mode=task-based \
+    --output="{prof_path}" > {log_path}

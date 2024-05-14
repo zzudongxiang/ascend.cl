@@ -13,15 +13,15 @@
                 "-fdiagnostics-color=always",
                 // 编译文件设置
                 "${workspaceFolder}/common/utils/**.cc",
-                "${workspaceFolder}/common/src/**.cc",
+                "${workspaceFolder}/common/hccl/**.cc",
                 "-g",
-                "${workspaceFolder}/opbase_test/zhangdx_test.cc",
+                "${workspaceFolder}/hccl/hccl.cc",
                 "-o",
-                "${workspaceFolder}/bin/zhangdx_test",
+                "${workspaceFolder}/bin/hccl_test",
                 // 头文件位置
-                "-I${workspaceFolder}/common/src",
+                "-I${workspaceFolder}/common/hccl",
                 "-I${workspaceFolder}/common/utils",
-                "-I${workspaceFolder}/opbase_test",
+                "-I${workspaceFolder}/hccl",
                 "-I${MPI_HOME}/include",
                 "-I${ASCEND_HOME}/include",
                 // 动态链接库位置

@@ -3,7 +3,7 @@
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 CXXFLAGS := -std=c++11\
         -Wl,--copy-dt-needed-entries \
-		-DMEM_DUMP
+#		-DMEM_DUMP
 # -fstack-protector-strong
 # -fPIE -pie
 # -O2
@@ -13,10 +13,10 @@ CXXFLAGS := -std=c++11\
 # -Wl,-z,now
 # -Wl,-z,noexecstack
 
-Common_DIR = ./common/src
-Opbase_DIR = ./opbase_test
+Common_DIR = ../common/hccl
+Utils_DIR = ../common/utils
+Opbase_DIR = ../hccl
 ASCEND_DIR = /usr/local/Ascend/ascend-toolkit/latest
-Utils_DIR = ./common/utils
 
 Common_SRC = $(wildcard ${Common_DIR}/*.cc)
 Opbase_SRC = $(wildcard ${Opbase_DIR}/*.cc)
@@ -44,12 +44,12 @@ INCLUDEDIRS = -I$(Common_DIR)\
 				-I$(HCCL_INC_DIR)\
 				-I$(ACL_INC_DIR)\
 				-I$(MPI_INC_DIR)\
-				-I./common/utils
+				-I$(Utils_DIR)
 #
 #make
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 all:
-	@mkdir -p bin
+	@mkdir -p ../bin
 	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_allgather_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_gather_test $(LIBS)
 	@printf "\033[0;32;32mall_gather_test compile completed\n\033[m" 
 	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_allreduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o all_reduce_test $(LIBS)
@@ -64,8 +64,8 @@ all:
 	@printf "\033[0;32;32mreduce_scatter_test completed\n\033[m" 
 	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_reduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_test $(LIBS)
 	@printf "\033[0;32;32mreduce_test compile completed\n\033[m" 
-	mv $(LIST) ./bin
+	mv $(LIST) ../bin
 
 .PHONY: clean
 clean:
-	rm -rf ./bin/*_test
+	rm -rf ../bin/*_test

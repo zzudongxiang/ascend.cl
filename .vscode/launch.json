@@ -4,7 +4,7 @@
       "name": "C/C++: gcc 生成和调试活动文件",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/zhangdx_test",
+      "program": "${workspaceFolder}/bin/hccl_test",
       "args": [
         "-b 2048M",
         "-e 2048M"
