@@ -1,8 +1,5 @@
 log/
 bin/
+data/*.json
 *.bin
 
-*_test
-!opbase_test/
-
-data/*.json

@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <vector>
 #include "mpi.h"
-#include "hccl_opbase_rootinfo_base.h"
+#include "hccl_rootinfo_base.h"
 #include "hccl_allgather_rootinfo_test.h"
 #include "hccl_test_common.h"
 #include <algorithm>

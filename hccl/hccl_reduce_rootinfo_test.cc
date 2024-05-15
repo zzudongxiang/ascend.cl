@@ -8,7 +8,7 @@
 #include <cstdint>
 #include <hccl/hccl_types.h>
 #include "hccl_reduce_rootinfo_test.h"
-#include "hccl_opbase_rootinfo_base.h"
+#include "hccl_rootinfo_base.h"
 #include "hccl_check_buf_init.h"
 using namespace hccl;
 HcclTest* init_opbase_ptr(HcclTest* opbase)

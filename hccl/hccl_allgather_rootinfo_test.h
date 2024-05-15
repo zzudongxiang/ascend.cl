@@ -3,7 +3,7 @@
 #include "hccl_test_common.h"
 #include "mpi.h"
 #include "hccl_check_common.h"
-#include "hccl_opbase_rootinfo_base.h"
+#include "hccl_rootinfo_base.h"
 namespace hccl {
 class HcclOpBaseAllgatherTest:public HcclOpBaseTest
 {
