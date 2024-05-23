@@ -3,3 +3,4 @@ bin/
 data/*.json
 *.bin
 *.log
+data/**/*.json
