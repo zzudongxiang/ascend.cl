@@ -4,3 +4,4 @@ data/*.json
 *.bin
 *.log
 data/**/*.json
+__pycache__

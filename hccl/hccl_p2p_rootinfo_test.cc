@@ -42,7 +42,6 @@ namespace hccl
 
     int HcclOpBaseP2PTest::init_buf_val()
     {
-        // 初始化校验内存
         ACLCHECK(aclrtMallocHost((void **)&check_buf, malloc_kSize * rank_size));
         hccl_host_buf_init((char *)check_buf, data->count * rank_size, dtype, val);
         return 0;
@@ -50,7 +49,6 @@ namespace hccl
 
     int HcclOpBaseP2PTest::check_buf_result()
     {
-        // 获取输出内存
         ACLCHECK(aclrtMallocHost((void **)&recv_buff_temp, malloc_kSize * rank_size));
         ACLCHECK(aclrtMemcpy((void *)recv_buff_temp, malloc_kSize * rank_size, (void *)recv_buff, malloc_kSize * rank_size, ACL_MEMCPY_DEVICE_TO_HOST));
         int ret = 0;
@@ -112,11 +110,6 @@ namespace hccl
 
     int HcclOpBaseP2PTest::hccl_op_base_test() // 主函数
     {
-        if (op_flag != 0 && rank_id == root_rank)
-        {
-            printf("Warning: The -o,--op <sum/prod/min/max> option does not take effect. Check the cmd parameter.\n");
-        }
-
         // 获取数据量和数据类型
         init_data_count();
 
@@ -146,14 +139,28 @@ namespace hccl
         // 执行集合通信操作
         for (int j = 0; j < warmup_iters; ++j)
         {
-            // HCCLCHECK(HcclAllGather((void *)send_buff, (void *)recv_buff, data->count, (HcclDataType)dtype, hccl_comm, stream));
+            if (rank_id % 2 == 0)
+            {
+                HCCLCHECK(HcclSend((void *)send_buff, data->count, (HcclDataType)dtype, rank_id + 1, hccl_comm, stream));
+            }
+            else
+            {
+                HCCLCHECK(HcclRecv((void *)send_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
+            }
         }
 
         ACLCHECK(aclrtRecordEvent(start_event, stream));
 
         for (int i = 0; i < iters; ++i)
         {
-            // HCCLCHECK(HcclAllGather((void *)send_buff, (void *)recv_buff, data->count, (HcclDataType)dtype, hccl_comm, stream));
+            if (rank_id % 2 == 0)
+            {
+                HCCLCHECK(HcclSend((void *)send_buff, data->count, (HcclDataType)dtype, rank_id + 1, hccl_comm, stream));
+            }
+            else
+            {
+                HCCLCHECK(HcclRecv((void *)send_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
+            }
         }
         // 等待stream中集合通信任务执行完成
         ACLCHECK(aclrtRecordEvent(end_event, stream));
