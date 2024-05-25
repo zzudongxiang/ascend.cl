@@ -1,7 +1,8 @@
-log/
-bin/
-data/*.json
 *.bin
-*.log
+
+log/*
+bin/*
+
+data/*.json
 data/**/*.json
 __pycache__

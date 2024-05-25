@@ -1,7 +1,3 @@
----
-title: HCCL集合通信测试
----
-
 # 1. 快速使用
 
 HCCL（Huawei Collective Communication Library）是基于昇腾AI处理器的高性能集合通信库，其主要功能与作用与Nvidia的NCCL库相似，主要用于集合通信，CANN库种自带一套测试工具用以分析集合通信性能。
@@ -142,78 +138,13 @@ VSCode需要安装`Remote-SSH`插件连接到远程服务器，插件安装过�
 
 ### 2.1.1 c_cpp_properties.json
 
-该文件主要用于配置在编辑器中是否显示静态检查结果，例如部分头文件无法找到会出现红色波浪等
-
-```json
-{
-    "env":{
-        "ASCEND_HOME": "/usr/local/Ascend/ascend-toolkit/latest"
-    },
-    "configurations": [
-        {
-            "name": "linux-gcc-arm64",
-            "includePath": [
-                "${workspaceFolder}",
-                "${workspaceFolder}/common/src",
-                "${workspaceFolder}/common/utils",
-                "${workspaceFolder}/opbase_test",
-                "${MPI_HOME}/include",
-                "${ASCEND_HOME}/include"
-            ],
-            "defines": [
-                "MEM_DUMP"
-            ],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c11",
-            "cppStandard": "gnu++11",
-            "intelliSenseMode": "linux-gcc-arm64",
-            "mergeConfigurations": false
-        }
-    ],
-    "version": 4
-}
-```
+[c_cpp_properties.json 文件](./.vscode/c_cpp_properties.json)主要用于配置在编辑器中是否显示静态检查结果，例如部分头文件无法找到会出现红色波浪等
 
 - **includePath**：将代码所需的头文件路径添加到该字段下即可
 
 ### 2.1.2 launch.json
 
-该文件主要用于配置调试器，在调试C/C++工具时需要先安装gdb工具，安装命令：`apt install gdb`
-
-```json
-{
-  "configurations": [
-    {
-      "name": "C/C++: gcc 生成和调试活动文件",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bin/zhangdx_test",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "为 gdb 启用整齐打印",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "将反汇编风格设置为 Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "C/C++: gcc 生成活动文件",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "envFile": "${workspaceFolder}/.env"
-    }
-  ],
-  "version": "2.0.0"
-}
-```
+[launch.json 文件](./.vscode/launch.json)主要用于配置调试器，在调试C/C++工具时需要先安装gdb工具，安装命令：`apt install gdb`
 
 - **program**：编译后生成的可执行文件，编译参数见`tasks.json`文件
 - **envFile**：程序运行时添加的环境变量，可参考`.env`文件
@@ -221,55 +152,34 @@ VSCode需要安装`Remote-SSH`插件连接到远程服务器，插件安装过�
 
 ### 2.1.3 tasks.json
 
-该文件主要用于编译生成可执行文件，相关的编译参数需要添加到该文件中，参数信息参考`Makefile`文件
-
-```json
-{
-    "tasks": [
-        {
-            "type": "cppbuild",
-            "label": "C/C++: gcc 生成活动文件",
-            "command": "/usr/bin/gcc",
-            "args": [
-                "-Wl,--copy-dt-needed-entries",
-                "-fdiagnostics-color=always",
-                "${workspaceFolder}/common/utils/**.cc",
-                "${workspaceFolder}/common/src/**.cc",
-                "-g",
-                "${workspaceFolder}/opbase_test/zhangdx_test.cc",
-                "-o",
-                "${workspaceFolder}/bin/zhangdx_test",
-                "-I${workspaceFolder}/common/src",
-                "-I${workspaceFolder}/common/utils",
-                "-I${workspaceFolder}/opbase_test",
-                "-I${MPI_HOME}/include",
-                "-I${ASCEND_HOME}/include",
-                "-L${MPI_HOME}/lib",
-                "-L${ASCEND_HOME}/lib64",
-                "-lhccl",
-                "-lascendcl",
-                "-lmpi",
-                "-DMEM_DUMP"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "调试器生成的任务"
-        }
-    ],
-    "version": "2.0.0"
-}
-```
+[tasks.json 文件](./.vscode/tasks.json)主要用于编译生成可执行文件，相关的编译参数需要添加到该文件中，参数信息参考`Makefile`文件
 
 - **label**：与`launch.json`文件中的`preLaunchTask`字段对应
 
 - **args**：编译参数，具体参考`Makefile`文件
 
-## 2.2 msprof设置
+## 2.2 MPI并行调试
+
+### 1. 运行启动命令
+
+在VSCode中的Debug菜单栏选择`hccl_debug`对待调试的文件进行编译，或者切换到`./hccl/`文件夹下使用`make`命令编译所有可执行文件，然后在新的Terminal切换到当前文件目录执行以下命令，以hccl_p2p_rootinfo_test为例，创建两个进程。
+
+```bash
+# 先设置环境变量，使当前控制台的进行等待调试进程attach到进程中
+export HCCL_MPI_DEBUG=1
+# 启动2个进程，对2个进程进行Attach调试
+mpirun -n 2 ./bin/hccl_p2p_rootinfo_test
+```
+
+此时界面Terminal的界面将会卡住，等待用户的调试进程Attach
+
+### 2. 调试代码
+
+在`main.cc`的第一行打断点，并选择`hccl_mpi_debug`开始进程Attach，待Attach成功后，修改`hccl_mpi_debug`的值为`false`然后就可以跳出while循环，进行代码调试了。
+
+注意Attach的时候选择的进程为运行的进程，而非mpi进程，本例中可以搜索并选择`hccl_p2p_rootinfo_test`进程进行Attach
+
+## 2.3 msprof设置
 
 本章节参考：[采集昇腾AI处理器系统数据](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC1alpha003/devaids/auxiliarydevtool/atlasprofiling_16_0012.html)，可以根据文档内容直接运行对应的执行参数，但是为了方便程序运行与调试，请参考[8卡Trace采集脚本](./script/run_8npu.ipynb)
 
@@ -289,33 +199,7 @@ VSCode需要安装`Remote-SSH`插件连接到远程服务器，插件安装过�
 
 ## 3.1 点对点通信测试
 
-数据源文件参考：[hccl_p2p_test.zip](./data/hccl_p2p_test.zip)
-
-### 3.1.1 点对点测试结果
-
-|      alg       |                        alg_bandwidth                         |                          aveg_time                           |
-| :------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|   all_gather   | ![image-20240503140318420](./images/image-20240503140318420.png) | ![image-20240503140322868](./images/image-20240503140322868.png) |
-|   all_reduce   | ![image-20240503140329478](./images/image-20240503140329478.png) | ![image-20240503140334236](./images/image-20240503140334236.png) |
-|    alltoall    | ![image-20240503140340497](./images/image-20240503140340497.png) | ![image-20240503140344961](./images/image-20240503140344961.png) |
-|   alltoallv    | ![image-20240503140350612](./images/image-20240503140350612.png) | ![image-20240503140355260](./images/image-20240503140355260.png) |
-|   broadcast    | ![image-20240503140406577](./images/image-20240503140406577.png) | ![image-20240503140420677](./images/image-20240503140420677.png) |
-|     reduce     | ![image-20240503140424837](./images/image-20240503140424837.png) | ![image-20240503140427557](./images/image-20240503140427557.png) |
-| reduce_scatter | ![image-20240503140431196](./images/image-20240503140431196.png) | ![image-20240503140434702](./images/image-20240503140434702.png) |
-
-- NPU卡对卡之间的连接带宽相对是稳定的、差异性较小
-- 在不同的算法下带宽数据表现一致性较好
-
-### 3.1.2 点对点算法带宽
-
-算法带宽是指申请内存空间大小为$N$，算法开始为$M$，则算法带宽为$N/M$，后续的实验证明，不同算法下，主要耗时花费在通信上，因此该带宽数据即为通信带宽数据。
-
-|                        alg_bandwidth                         |                          aveg_time                           |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![image-20240503140446844](./images/image-20240503140446844.png) | ![image-20240503140451733](./images/image-20240503140451733.png) |
-
-- 随着数据包增大，带宽数据逐渐增加，最终稳定在37.8GB/s
-- 不同算法对数据包的大小敏感程度不一样，alltoallv（绿色）算法耗时较长
+- 待补充
 
 ## 3.2 Trace Timeline分析
 
