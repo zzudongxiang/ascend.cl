@@ -13,6 +13,9 @@
 #include "acl/acl.h"
 #include "acl/acl_prof.h"
 
+#include "mem_dump.h"
+#include "env_utils.h"
+
 #undef INT_MAX
 #define INT_MAX __INT_MAX__
 
@@ -65,6 +68,9 @@ const int SERVER_MAX_DEV_NUM = 8;
         return ret;\
     } \
 } while(0)
+
+u32 sal_str_len(const char *s, u32 maxLen = INT_MAX);
+
 namespace hccl
 {
 class HcclTest

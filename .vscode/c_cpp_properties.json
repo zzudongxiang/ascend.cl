@@ -5,10 +5,8 @@
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/common/hccl",
-                "${workspaceFolder}/common/p2p",
                 "${workspaceFolder}/common/utils",
                 "${workspaceFolder}/hccl",
-                "${workspaceFolder}/p2p",
                 "${MPI_HOME}/include",
                 "${ASCEND_HOME}/include"
             ],

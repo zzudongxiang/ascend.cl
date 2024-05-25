@@ -11,8 +11,6 @@
 #include <hccl/hccl_types.h>
 #include "hccl_test_common.h"
 
-#include "mem_dump.h"
-
 //#ifdef USE_HCCL_API
 
 //浮点数计算精度，当前算误差百分比

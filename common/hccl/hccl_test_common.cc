@@ -101,7 +101,7 @@ static long parsesize(const char *value) {
     return size * units;
 }
 
-u32 sal_str_len(const char *s, u32 maxLen = INT_MAX)
+u32 sal_str_len(const char *s, u32 maxLen)
 {
     return strnlen(s, maxLen);
 }

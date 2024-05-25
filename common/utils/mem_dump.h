@@ -5,7 +5,6 @@
 #define DTYPE_LEN 4
 #define B_TO_MB (double)1 / 1024 / 1024
 #define B_TO_GB (double)1 / 1024 / 1024 / 1024
-#define ROOT_PATH "/root/workdir/hccl_test/log"
 
 void mem_dump(void *ptr, uint64_t len);
 void mem_dump_file(void *ptr, uint64_t len, char *file);
@@ -22,7 +21,7 @@ void mem_dump_info(int rank_id, const char *func, void *ptr, uint64_t len, uint8
     {                                                                                                                                          \
         char bin_path[MAX_PATH_LEN];                                                                                                           \
         memset(bin_path, 0, MAX_PATH_LEN);                                                                                                     \
-        sprintf(bin_path, ROOT_PATH "/" FUNC_TAG "_" PTR_TAG "_rank_%d.bin", rank_id);                                                         \
+        sprintf(bin_path, "./log/" FUNC_TAG "_" PTR_TAG "_rank_%d.bin", rank_id);                                                              \
         mem_dump_file((char *)host_buff, host_malloc, bin_path);                                                                               \
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> log_path: %s\r\n", rank_id, bin_path);                                                \
         printf("func_" FUNC_TAG "_" PTR_TAG "_rank_%d >> host_buff: %p (malloc: %.2f GB, value: %f)\r\n",                                      \

@@ -1,62 +1,55 @@
 {
-  "configurations": [
-    {
-      "name": "hccl_debug",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bin/hccl_test",
-      "args": [
-        "-b 2048M",
-        "-e 2048M"
-      ],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
+    "configurations": [
         {
-          "description": "为 gdb 启用整齐打印",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "hccl_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
+            "args": [
+                "-b 2048M",
+                "-e 2048M"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "hccl_prelaunch_task",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "envFile": "${workspaceFolder}/.env"
         },
         {
-          "description": "将反汇编风格设置为 Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "hccl_prelaunch_task",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "envFile": "${workspaceFolder}/.env"
-    },
-    {
-      "name": "p2p_debug",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bin/p2p_test",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "为 gdb 启用整齐打印",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "hccl_mpi_debug",
+            "type": "cppdbg",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
+            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
         },
-        {
-          "description": "将反汇编风格设置为 Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "p2p_prelaunch_task",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "envFile": "${workspaceFolder}/.env"
-    }
-  ],
-  "version": "2.0.0"
+    ],
+    "version": "2.0.0"
 }

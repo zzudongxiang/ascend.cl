@@ -15,56 +15,13 @@
                 "${workspaceFolder}/common/utils/**.cc",
                 "${workspaceFolder}/common/hccl/**.cc",
                 "-g",
-                "${workspaceFolder}/hccl/hccl.cc",
+                "${workspaceFolder}/hccl/${fileBasename}",
                 "-o",
-                "${workspaceFolder}/bin/hccl_test",
+                "${workspaceFolder}/bin/${fileBasenameNoExtension}",
                 // 头文件位置
                 "-I${workspaceFolder}/common/hccl",
                 "-I${workspaceFolder}/common/utils",
                 "-I${workspaceFolder}/hccl",
-                "-I${MPI_HOME}/include",
-                "-I${ASCEND_HOME}/include",
-                // 动态链接库位置
-                "-L${MPI_HOME}/lib",
-                "-L${ASCEND_HOME}/lib64",
-                "-lhccl",
-                "-lascendcl",
-                "-lmpi",
-                "-lstdc++",
-                // 宏定义
-                "-DMEM_DUMP"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "调试器生成的任务"
-        },
-        {
-            "type": "cppbuild",
-            "label": "p2p_prelaunch_task",
-            "command": "/usr/bin/gcc",
-            "args": [
-                // 编译参数设置
-                //"-Wl,-z,relro",
-                //"-Wl,-z,now",
-                //"-Wl,-z,noexecstack",
-                "-Wl,--copy-dt-needed-entries",
-                "-fdiagnostics-color=always",
-                // 编译文件设置
-                "${workspaceFolder}/common/utils/**.cc",
-                "${workspaceFolder}/common/p2p/**.cc",
-                "-g",
-                "${workspaceFolder}/p2p/p2p.cc",
-                "-o",
-                "${workspaceFolder}/bin/p2p_test",
-                // 头文件位置
-                "-I${workspaceFolder}/common/p2p",
-                "-I${workspaceFolder}/common/utils",
-                "-I${workspaceFolder}/p2p",
                 "-I${MPI_HOME}/include",
                 "-I${ASCEND_HOME}/include",
                 // 动态链接库位置
