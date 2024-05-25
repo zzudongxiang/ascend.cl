@@ -1,0 +1,192 @@
+rank_id: 0, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 4, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 5, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 1, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 2, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 3, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 6, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+rank_id: 7, rank_size: 8, HCCL_TEST_USE_DEVS: 0,1,2,3,4,5,6,7
+func_reducescatter_init_rank_2 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_2.bin
+func_reducescatter_init_rank_2 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 3.000000)
+func_reducescatter_init_rank_2 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_2 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_init_rank_0 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_0.bin
+func_reducescatter_init_rank_0 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 1.000000)
+func_reducescatter_init_rank_0 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_0 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_init_rank_7 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_7.bin
+func_reducescatter_init_rank_7 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 8.000000)
+func_reducescatter_init_rank_7 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_7 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_init_rank_3 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_3.bin
+func_reducescatter_init_rank_3 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 4.000000)
+func_reducescatter_init_rank_3 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_3 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_init_rank_1 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_1.bin
+func_reducescatter_init_rank_1 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 2.000000)
+func_reducescatter_init_rank_1 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_1 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_init_rank_5 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_5.bin
+func_reducescatter_init_rank_5 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 6.000000)
+func_reducescatter_init_rank_5 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_5 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_init_rank_6 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_6.bin
+func_reducescatter_init_rank_6 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 7.000000)
+func_reducescatter_init_rank_6 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_6 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_init_rank_4 >> log_path: /root/workdir/hccl_test/log/reducescatter_init_rank_4.bin
+func_reducescatter_init_rank_4 >> host_buff: 0x124380000000 (malloc: 2.00 GB, value: 5.000000)
+func_reducescatter_init_rank_4 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_init_rank_4 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x124380000000 (256.00 MB), fp32: 10.000000 (0x00002041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x124390000000 (256.00 MB), fp32: 11.000000 (0x00003041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243a0000000 (256.00 MB), fp32: 12.000000 (0x00004041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243b0000000 (256.00 MB), fp32: 13.000000 (0x00005041)
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_0 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_0 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_0 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_0 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_2 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_2 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_2 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_2 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243c0000000 (256.00 MB), fp32: 14.000000 (0x00006041)
+func_reducescatter_dump_rank_7 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_7 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_7 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_7 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_3 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_3 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_3 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_3 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_1 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_1 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_1 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_1 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_5 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_5 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_5 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_5 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_6 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_6 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_6 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_6 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243d0000000 (256.00 MB), fp32: 15.000000 (0x00007041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243e0000000 (256.00 MB), fp32: 16.000000 (0x00008041)
+func_reducescatter_dump_rank_4 >> start_ptr: 0x1243f0000000 (256.00 MB), fp32: 17.000000 (0x00008841)
+func_reducescatter_init_rank_4 >> ptr_shift: 0x124380000000 (host) -> 0x1242c0000000 (send): 3.00 GB
+func_reducescatter_init_rank_4 >> ptr_shift: 0x124380000000 (host) -> 0x124041200000 (recv): 12.98 GB
+func_reducescatter_init_rank_4 >> ptr_shift: 0x124041200000 (recv) -> 0x1242c0000000 (send): -9.98 GB
+func_reducescatter_done_rank_6 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_6.bin
+func_reducescatter_done_rank_6 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 7.000000)
+func_reducescatter_done_rank_6 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_6 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_7 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_7.bin
+func_reducescatter_done_rank_7 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 8.000000)
+func_reducescatter_done_rank_7 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_7 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_4 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_4.bin
+func_reducescatter_done_rank_4 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 5.000000)
+func_reducescatter_done_rank_4 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_4 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_5 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_5.bin
+func_reducescatter_done_rank_5 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 6.000000)
+func_reducescatter_done_rank_5 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_5 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_0 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_0.bin
+func_reducescatter_done_rank_0 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 1.000000)
+func_reducescatter_done_rank_0 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_0 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_1 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_1.bin
+func_reducescatter_done_rank_1 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 2.000000)
+func_reducescatter_done_rank_1 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_1 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_2 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_2.bin
+func_reducescatter_done_rank_2 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 3.000000)
+func_reducescatter_done_rank_2 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_2 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_done_rank_3 >> log_path: /root/workdir/hccl_test/log/reducescatter_done_rank_3.bin
+func_reducescatter_done_rank_3 >> host_buff: 0x124080c00000 (malloc: 0.25 GB, value: 4.000000)
+func_reducescatter_done_rank_3 >> send_buff: 0x1242c0000000 (malloc: 2.00 GB, count: 64.00 MB)
+func_reducescatter_done_rank_3 >> recv_buff: 0x124041200000 (malloc: 0.25 GB, count: 64.00 MB)
+func_reducescatter_dump_rank_3 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 104.000000 (0x0000D042)
+func_reducescatter_done_rank_3 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_3 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_3 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_2 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 96.000000 (0x0000C042)
+func_reducescatter_done_rank_2 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_2 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_2 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_5 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 120.000000 (0x0000F042)
+func_reducescatter_done_rank_5 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_5 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_5 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_6 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 128.000000 (0x00000043)
+func_reducescatter_done_rank_6 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_6 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_6 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_0 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 80.000000 (0x0000A042)
+func_reducescatter_done_rank_0 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_0 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_0 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_7 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 136.000000 (0x00000843)
+func_reducescatter_done_rank_7 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_7 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_7 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_1 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 88.000000 (0x0000B042)
+func_reducescatter_done_rank_1 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_1 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_1 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
+func_reducescatter_dump_rank_4 >> start_ptr: 0x124080c00000 (256.00 MB), fp32: 112.000000 (0x0000E042)
+func_reducescatter_done_rank_4 >> ptr_shift: 0x124080c00000 (host) -> 0x124380000000 (init): -11.99 GB
+func_reducescatter_done_rank_4 >> ptr_shift: 0x124080c00000 (host) -> 0x1242c0000000 (send): -8.99 GB
+func_reducescatter_done_rank_4 >> ptr_shift: 0x124080c00000 (host) -> 0x124041200000 (recv): 0.99 GB
