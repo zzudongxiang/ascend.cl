@@ -145,7 +145,7 @@ namespace hccl
             }
             else
             {
-                HCCLCHECK(HcclRecv((void *)send_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
+                HCCLCHECK(HcclRecv((void *)recv_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
             }
         }
 
@@ -159,7 +159,7 @@ namespace hccl
             }
             else
             {
-                HCCLCHECK(HcclRecv((void *)send_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
+                HCCLCHECK(HcclRecv((void *)recv_buff, data->count, (HcclDataType)dtype, rank_id - 1, hccl_comm, stream));
             }
         }
         // 等待stream中集合通信任务执行完成
