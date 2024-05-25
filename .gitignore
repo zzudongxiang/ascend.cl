@@ -5,3 +5,4 @@ bin/*
 
 data/*.json
 data/**/*.json
+__pycache__

@@ -31,7 +31,7 @@ ACL_LIB_DIR = ${ASCEND_DIR}/lib64
 MPI_INC_DIR = ${MPI_HOME}/include
 MPI_LIB_DIR = ${MPI_HOME}/lib
 
-LIST = all_gather_test all_reduce_test alltoallv_test alltoall_test broadcast_test reduce_scatter_test reduce_test p2p_test
+LIST = all_gather_test all_reduce_test alltoallv_test alltoall_test broadcast_test reduce_scatter_test reduce_test hccl_p2p_rootinfo_test
 
 #
 #library flags
@@ -72,7 +72,7 @@ all:
 	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_reduce_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o reduce_test $(LIBS)
 	@printf "reduce_test compile completed\n\n"
 
-	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_p2p_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o p2p_test $(LIBS)
+	g++ $(CXXFLAGS) $(Common_SRC) $(Utils_SRC) ${Opbase_DIR}/hccl_p2p_rootinfo_test.cc $(INCLUDEDIRS) -I${Opbase_DIR} -o hccl_p2p_rootinfo_test $(LIBS)
 	@printf "p2p_test compile completed\n\n"
 
 	mv $(LIST) ../bin
