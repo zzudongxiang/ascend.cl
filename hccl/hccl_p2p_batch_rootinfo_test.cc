@@ -155,7 +155,6 @@ namespace hccl
         // 执行集合通信操作
         for (int j = 0; j < warmup_iters; ++j)
         {
-            if(rank_id == 0) printf("warmup: %d\n", j);
             if (rank_id % 2 == 0)
             {
                 sendInfo.remoteRank = rank_id + 1;
@@ -167,8 +166,8 @@ namespace hccl
             {
                 sendInfo.remoteRank = rank_id - 1;
                 recvInfo.remoteRank = rank_id - 1;
-                HCCLCHECK(HcclBatchSendRecv(&sendInfo, 1, hccl_comm, stream));
                 HCCLCHECK(HcclBatchSendRecv(&recvInfo, 1, hccl_comm, stream));
+                HCCLCHECK(HcclBatchSendRecv(&sendInfo, 1, hccl_comm, stream));
             }
         }
 
@@ -176,7 +175,6 @@ namespace hccl
 
         for (int i = 0; i < iters; ++i)
         {
-            if(rank_id == 0) printf("iters: %d\n", i);
             if (rank_id % 2 == 0)
             {
                 sendInfo.remoteRank = rank_id + 1;
@@ -188,8 +186,8 @@ namespace hccl
             {
                 sendInfo.remoteRank = rank_id - 1;
                 recvInfo.remoteRank = rank_id - 1;
-                HCCLCHECK(HcclBatchSendRecv(&sendInfo, 1, hccl_comm, stream));
                 HCCLCHECK(HcclBatchSendRecv(&recvInfo, 1, hccl_comm, stream));
+                HCCLCHECK(HcclBatchSendRecv(&sendInfo, 1, hccl_comm, stream));
             }
         }
         // 等待stream中集合通信任务执行完成
